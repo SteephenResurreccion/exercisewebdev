@@ -1,0 +1,22 @@
+/* Spacing tweaks */
+#portfolio { transition: background-color 250ms ease; }
+
+.project-card {
+  border: none;
+  transition: transform 150ms ease, box-shadow 150ms ease;
+}
+.project-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0.75rem 1.25rem rgba(0, 0, 0, 0.12);
+}
+
+/* Make images keep aspect and not distort the card */
+.project-card .card-img-top {
+  object-fit: cover;
+  height: 200px;
+}
+
+/* Slightly nicer focus outline for accessibility */
+.btn:focus, .form-control:focus {
+  box-shadow: 0 0 0 0.25rem rgba(13,110,253,.25);
+}
