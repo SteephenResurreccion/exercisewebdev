@@ -1,22 +1,396 @@
-/* Spacing tweaks */
-#portfolio { transition: background-color 250ms ease; }
+/* ========== Layout ========== */
+html, body { height: 100%; }
+body{
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
 
+/* If you ever re-add a footer, this keeps the hero flexible */
+.home-hero{ flex: 1; }
+
+/* ========== Autumn palette ========== */
+:root{
+  --pumpkin-900:#4a1e0c;
+  --pumpkin-800:#6b2c12;
+  --pumpkin-700:#7b341e;
+  --pumpkin-600:#9a3412;
+  --pumpkin-500:#b45309; /* primary */
+  --pumpkin-400:#d97706;
+  --pumpkin-300:#f59e0b;
+  --pumpkin-200:#fdba74;
+  --pumpkin-100:#ffedd5;
+  --pumpkin-50:#fff7ed;
+
+  --accent-forest:#1f3d2b;
+  --accent-brown:#3b2f2f;
+}
+
+.text-autumn-900{ color: var(--pumpkin-900) !important; }
+.text-autumn-700{ color: var(--pumpkin-700) !important; }
+
+/* Legacy gradient navbar (kept if you use bg-autumn somewhere) */
+.bg-autumn{
+  background: linear-gradient(90deg, var(--pumpkin-800), var(--pumpkin-500));
+}
+
+/* ========== Pill Navbar (used on all pages) ========== */
+.navbar-autumn { background-color: var(--pumpkin-900); padding: 0.75rem 1rem; }
+
+.nav-pills-container{
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background-color: rgba(255, 237, 213, 0.06);
+  border: 1px solid rgba(255, 237, 213, 0.15);
+  border-radius: 9999px;
+  padding: 0.35rem 1rem;
+}
+
+.nav-pills-container .nav-link{
+  color: #ffedd5;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  border-radius: 9999px;
+  padding: 0.45rem 0.85rem;
+  transition: all 0.25s ease;
+}
+.nav-pills-container .nav-link:hover{ background-color: var(--pumpkin-700); color: #fff; }
+.nav-pills-container .nav-link.active{ background-color: var(--pumpkin-600); color: #fff; }
+.nav-pills-container .nav-link i{ font-size: 1.05rem; }
+
+.leaf-icon{ color:#ffd7a0; }
+
+/* ========== Buttons / Focus ========== */
+.btn-autumn{
+  background-color: var(--pumpkin-500);
+  border-color: var(--pumpkin-500);
+  color: #fff;
+}
+.btn-autumn:hover{
+  background-color: var(--pumpkin-600);
+  border-color: var(--pumpkin-600);
+}
+.btn:focus, .form-control:focus {
+  box-shadow: 0 0 0 0.25rem rgba(244, 114, 33, .25);
+}
+
+/* ========== Homepage Hero ========== */
+.home-hero{
+  position: relative;
+  min-height: calc(100vh - 72px); /* full viewport minus navbar */
+  background:
+    linear-gradient(rgba(30,18,10,0.55), rgba(30,18,10,0.55)),
+    url('autumnbackground.avif') center / cover no-repeat fixed;
+  overflow: hidden;
+}
+
+/* Optional vignette for contrast */
+.home-hero::before{
+  content: "";
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(80% 60% at 50% 30%, rgba(0,0,0,0) 0%,
+      rgba(0,0,0,0.25) 60%, rgba(0,0,0,0.45) 100%);
+  pointer-events: none;
+}
+
+:root { --nav-h: 72px; }              /* your pill navbar is ~72px tall */
+
+.section-fill {
+  min-height: calc(100vh - var(--nav-h));  /* fill the screen below the nav */
+}
+
+
+/* If you still keep an overlay div in HTML, this keeps it consistent */
+.home-hero .home-overlay{
+  position: absolute;
+  inset: 0;
+  background: rgba(35, 20, 10, 0.55);
+  backdrop-filter: saturate(120%) brightness(0.9);
+}
+.home-hero .container{ z-index: 1; }
+
+/* ========== Section: Portfolio ========== */
+/* Soft autumn top glow, fills screen under navbar */
+.portfolio-full{
+  /* default color for the gradient end; will be changed from JS */
+  --bg-end: var(--pumpkin-50);
+
+  position: relative;
+  min-height: calc(100vh - 72px);
+  padding: 2.25rem 0 3rem;
+  background:
+    radial-gradient(1200px 400px at 50% -120px, var(--pumpkin-50), transparent),
+    /* use the variable for the lower gradient color */
+    linear-gradient(180deg, #fff, var(--bg-end));
+  transition: background 0.6s ease; /* smooth fade */
+}
+
+
+/* Base portfolio bg (also used for JS color-change) */
+.portfolio-bg{
+  background-color: var(--pumpkin-50);
+  transition: background-color 250ms ease;
+}
+
+/* ========== Cards (prettier + animated) ========== */
+.project-card{
+  border: 1px solid rgba(255,149,58,0.30);        /* warm border */
+  border-radius: 14px;
+  overflow: hidden;
+  background: #fff;
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease, opacity .5s ease;
+  opacity: 1;                                     /* visible by default */
+  animation: fadeInUp 0.6s ease both;
+}
+.project-card:hover{
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 10px 20px rgba(68, 35, 15, 0.25);
+  border-color: var(--pumpkin-400);
+}
+.project-card .card-img-top{
+  height: 260px;
+  object-fit: cover;
+  transition: transform .4s ease;
+}
+.project-card:hover .card-img-top{ transform: scale(1.05); }
+.project-card .card-title{ color: var(--pumpkin-700); font-weight: 700; }
+
+/* Fade-in on load */
+@keyframes fadeInUp{
+  from{ opacity: 0; transform: translateY(14px); }
+  to  { opacity: 1; transform: translateY(0); }
+}
+
+/* ========== Contact Section ========== */
+.bg-autumn-soft{
+  background: linear-gradient(180deg, #fff, var(--pumpkin-50));
+}
+
+/* ========== Modals ========== */
+.modal-autumn{ border: 1px solid var(--pumpkin-200); }
+.modal-autumn-header{
+  background: linear-gradient(90deg, var(--pumpkin-700), var(--pumpkin-500));
+}
+
+/* ===== Page Transition Effects ===== */
+
+/* Initial blur state for leaving page */
+.page-blur {
+  filter: blur(12px);
+  opacity: 0;
+  transition: all 0.6s ease;
+}
+
+/* Initial hidden state for cards */
+.project-card {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+/* Visible state for cards */
+.project-card.show {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+#portfolio h2 {
+  font-size: 2.75rem;
+}
+
+#portfolio {
+  padding-top: 2rem;
+}
+
+#portfolio .lead {
+  font-size: 1.6rem;
+}
+
+/* Portfolio heading adjustments */
+.portfolio-header {
+  margin-top: 4rem;      /* Space from navbar */
+  margin-bottom: 4rem;   /* Space before cards */
+}
+
+.portfolio-header .lead {
+  color: #7c2d12;
+  font-size: 1.15rem;
+  margin-bottom: 0.1rem; /* Less gap to the heading */
+  line-height: 1.3;
+}
+
+.portfolio-header h2 {
+  font-size: 3.75rem; /* Bigger text */
+  color: #5c1d0a;
+  margin-top: 1rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.highlight-word {
+  color: #d97706;
+}
+
+
+/* Center cards and ensure spacing */
+#portfolio .row {
+  justify-content: center;
+}
+
+/* Card theme adjustments */
 .project-card {
   border: none;
-  transition: transform 150ms ease, box-shadow 150ms ease;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  background-color: #fff7ed;
 }
-.project-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 0.75rem 1.25rem rgba(0, 0, 0, 0.12);
+.project-card .card-body {
+  text-align: center;
 }
 
-/* Make images keep aspect and not distort the card */
-.project-card .card-img-top {
+/* --- Tile (card) --- */
+.project-tile{
+  position: relative;
+  display: block;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 10px 18px rgba(0,0,0,.08);
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+
+
+/* Title a touch bigger on the tile */
+.project-tile .tile-title{
+  font-size: 1.3rem;     /* was default; bump slightly */
+}
+
+.project-tile .tile-vignette{
+  position: absolute; inset: 0;
+  background: radial-gradient(100% 80% at 50% 30%, rgba(0,0,0,0) 0%, rgba(0,0,0,.65) 75%);
+  opacity: 0; transition: opacity .25s ease;
+}
+.project-tile .tile-title{
+  position: absolute; left: 14px; bottom: 12px;
+  color: #fff; font-weight: 800; letter-spacing:.2px;
+  text-shadow: 0 2px 8px rgba(0,0,0,.45);
+  opacity: 0; transform: translateY(6px);
+  transition: opacity .25s ease, transform .25s ease;
+}
+
+/* Hover effect */
+.project-tile:hover{
+  transform: translateY(-6px);
+  box-shadow: 0 16px 30px rgba(0,0,0,.18);
+}
+.project-tile:hover img{ transform: scale(1.04); }
+.project-tile:hover .tile-vignette,
+.project-tile:hover .tile-title{ opacity: 1; transform: translateY(0); }
+
+/* --- Modal with image + vignette + caption overlay --- */
+.modal-imgcard{
+  background: #000; border: none; border-radius: 16px; overflow: hidden; position: relative;
+}
+.modal-close{
+  position: absolute; top: 10px; right: 10px; z-index: 5;
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,.5));
+}
+.modal-figure{
+  position: relative; margin: 0;
+  background: #000;
+}
+.modal-figure img{
+  width: 100%; height: 70vh; object-fit: cover; display:block;
+}
+.modal-vignette{
+  position: absolute; inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,.0) 40%, rgba(0,0,0,.75) 100%);
+}
+.modal-caption{
+  position: absolute; left: 0; right: 0; bottom: 0;
+  padding: 24px 28px;
+  color: #fff;
+}
+.modal-caption h3{ font-weight: 800; margin: 0; }
+.modal-caption p { opacity: .95; }
+
+/* Tighten modal paddings on small screens */
+@media (max-width: 576px){
+  .modal-figure img{ height: 60vh; }
+  .modal-caption{ padding: 18px; }
+}
+
+/* Keep the modal itself a bit narrower */
+#projectModal .modal-dialog{
+  max-width: min(1000px, 86vw);  /* slightly smaller than full xl */
+}
+
+/* Image shorter so it doesn’t look full-screen */
+.modal-figure img{
+  width: 100%;
+  height: 62vh;                    /* was 70vh — smaller */
   object-fit: cover;
-  height: 200px;
+  display: block;
+  border-radius: 8px;              /* subtle rounding looks nice */
 }
 
-/* Slightly nicer focus outline for accessibility */
-.btn:focus, .form-control:focus {
-  box-shadow: 0 0 0 0.25rem rgba(13,110,253,.25);
+/* Stronger vignette for readability */
+.modal-vignette{
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(to bottom,
+      rgba(0,0,0,0.00) 40%,
+      rgba(0,0,0,0.55) 70%,
+      rgba(0,0,0,0.82) 100%);       /* stronger at the bottom */
 }
+
+/* Bigger caption text */
+.modal-caption h3{
+  font-weight: 800;
+  margin: 0 0 .25rem 0;
+  font-size: 1.5rem;               /* was smaller */
+  line-height: 1.25;
+}
+.modal-caption p{
+  font-size: 1rem;                 /* was ~0.95 rem */
+  opacity: .98;
+}
+
+/* Height utilities for the tile-media box (width/height) */
+.tile-media.ratio-short  { aspect-ratio: 32 / 32; } /* shortest */
+.tile-media.ratio-medium { aspect-ratio: 32  / 44;  } /* medium  */
+.tile-media.ratio-tall   { aspect-ratio: 32  / 56;  } /* tallest */
+
+/* Optional: keep them uniform on small screens */
+@media (max-width: 768px){
+  .tile-media.ratio-short,
+  .tile-media.ratio-medium,
+  .tile-media.ratio-tall { aspect-ratio: 4 / 3; }
+}
+
+.tile-media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 15; /* controls height; 4/3 is taller than 16/9 */
+  overflow: hidden;
+  border-radius: 14px; /* match your card’s radius */
+}
+
+.tile-media img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;       /* crop instead of stretch */
+  object-position: center; /* center the focal point */
+  display: block;
+}
+
+
+/* keep your existing hover scale */
+.project-tile:hover img{ transform: scale(1.04); }
+

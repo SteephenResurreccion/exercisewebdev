@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Steephen • Contact</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    :root {
+      --nav-h: 72px; /* navbar height */
+    }
+    .section-fill {
+      min-height: calc(100vh - var(--nav-h));
+    }
+  </style>
+</head>
+<body>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark navbar-autumn sticky-top shadow">
+  <div class="container-fluid justify-content-between">
+
+    <!-- Left: Logo -->
+    <div class="nav-pills-container">
+      <a class="nav-link" href="index.html">
+        <i class="bi bi-suit-heart-fill leaf-icon"></i> Steephen
+      </a>
+    </div>
+
+    <!-- Middle: Main nav -->
+    <div class="nav-pills-container">
+      <a class="nav-link {{ page=='home' ? 'active' : '' }}" href="index.html"><i class="bi bi-house"></i> Home</a>
+      <a class="nav-link {{ page=='portfolio' ? 'active' : '' }}" href="portfolio.html"><i class="bi bi-briefcase"></i> Portfolio</a>
+    </div>
+
+    <!-- Right: Contact -->
+    <div class="nav-pills-container">
+      <a class="nav-link {{ page=='contact' ? 'active' : '' }}" href="contact.html"><i class="bi bi-envelope"></i> Contact Me</a>
+    </div>
+
+  </div>
+</nav>
+
+  <!-- Contact Section -->
+  <section class="py-5 bg-autumn-soft section-fill">
+    <div class="container" style="max-width: 800px;">
+      <h1 class="mb-4 text-autumn-900">Get in Touch</h1>
+      <p class="lead text-autumn-700">Feel free to reach out using the form below.</p>
+      
+      <form>
+        <div class="mb-3">
+          <label for="name" class="form-label">Your Name</label>
+          <input type="text" class="form-control" id="name" required>
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">Email Address</label>
+          <input type="email" class="form-control" id="email" required>
+        </div>
+        <div class="mb-3">
+          <label for="message" class="form-label">Message</label>
+          <textarea class="form-control" id="message" rows="5" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-autumn btn-lg">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

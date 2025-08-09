@@ -3,179 +3,51 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>My Portfolio</title>
+  <title>Steephen • Home</title>
 
-  <!-- Bootstrap CSS -->
-  <link
-    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-    rel="stylesheet"
-  />
-
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
-    <div class="container">
-      <a class="navbar-brand fw-bold" href="#">Steephen Resurreccion</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navMenu">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="#portfolio">Portfolio</a></li>
-          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-        </ul>
-      </div>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark navbar-autumn sticky-top shadow">
+  <div class="container-fluid justify-content-between">
+
+    <!-- Left: Logo -->
+    <div class="nav-pills-container">
+      <a class="nav-link">
+        <i class="bi bi-suit-heart-fill leaf-icon"></i> Steephen
+      </a>
     </div>
-  </nav>
 
-  <!-- Hero -->
-  <header class="py-5 text-center bg-light">
-    <div class="container">
-      <h1 class="display-5 fw-bold mb-2">Hi, I'm Steephen</h1>
-      <p class="lead text-muted">Welcome to my portfolio</p>
+    <!-- Middle: Main nav -->
+    <div class="nav-pills-container">
+      <a class="nav-link {{ page=='home' ? 'active' : '' }}"><i class="bi bi-house"></i> Home</a>
+      <a class="nav-link {{ page=='portfolio' ? 'active' : '' }}" href="portfolio.html"><i class="bi bi-briefcase"></i> Portfolio</a>
     </div>
-  </header>
 
-  <!-- Portfolio -->
-  <section id="portfolio" class="py-5">
-    <div class="container">
-      <h2 class="mb-4 text-center">Portfolio</h2>
-
-      <div class="row g-4">
-        <!-- Project 1 -->
-        <div class="col-md-4">
-          <div class="card h-100 shadow-sm project-card">
-            <img src="https://amazingarchitecture.com/storage/1840/cabin_house_winter.jpg" />
-            <div class="card-body">
-              <h5 class="card-title project-title" data-color="#e8f5e9">Project 1</h5>
-              <p class="card-text text-muted">A description of Project 1.</p>
-              <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#project1Modal">
-                Learn More
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Project 2 -->
-        <div class="col-md-4">
-          <div class="card h-100 shadow-sm project-card">
-            <img src="https://wallpapers.com/images/hd/cool-fall-3gprprjfuguld8gz.jpg" class="card-img-top" alt="Project 2 image" />
-            <div class="card-body">
-              <h5 class="card-title project-title" data-color="#e3f2fd">Project 2</h5>
-              <p class="card-text text-muted">A description of Project 2.</p>
-              <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#project2Modal">
-                Learn More
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Project 3 -->
-        <div class="col-md-4">
-          <div class="card h-100 shadow-sm project-card">
-            <img src="https://oakgroveky.org/wp-content/uploads/2023/05/Keep-Cool-This-Summer.png" class="card-img-top" alt="Project 3 image" />
-            <div class="card-body">
-              <h5 class="card-title project-title" data-color="#fff3e0">Project 3</h5>
-              <p class="card-text text-muted">A description of Project 3.</p>
-              <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#project3Modal">
-                Learn More
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
+    <!-- Right: Contact -->
+    <div class="nav-pills-container">
+      <a class="nav-link {{ page=='contact' ? 'active' : '' }}" href="contact.html"><i class="bi bi-envelope"></i> Contact Me</a>
     </div>
-  </section>
 
-  <!-- Contact -->
-  <section id="contact" class="py-5 bg-light">
-    <div class="container">
-      <h2 class="mb-4 text-center">Contact Me</h2>
-
-      <form id="contactForm" class="mx-auto" style="max-width: 900px;">
-        <div class="mb-3">
-          <label for="name" class="form-label">Name</label>
-          <input type="text" class="form-control" id="name" placeholder="Put Name Here" required />
-        </div>
-        <div class="mb-3">
-          <label for="email" class="form-label">Email address</label>
-          <input type="email" class="form-control" id="email" placeholder="YourEmail@email.com" required />
-        </div>
-        <div class="mb-3">
-          <label for="message" class="form-label">Message</label>
-          <textarea class="form-control" id="message" rows="6" placeholder="Wassap" required></textarea>
-        </div>
-        <button type="submit" class="btn btn-success btn-lg">Submit</button>
-      </form>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="py-4 text-center small text-muted">
-    <div class="container">
-      © <span id="year"></span> Yoyoyo
-    </div>
-  </footer>
-
-  <!-- Project 1 Modal -->
-  <div class="modal fade" id="project1Modal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5">Project 1 Details</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          More detailed information about Project 1 goes here. You can include images, text, and links.
-        </div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        </div>
-      </div>
-    </div>
   </div>
+</nav>
 
-  <!-- Project 2 Modal -->
-  <div class="modal fade" id="project2Modal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5">Project 2 Details</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          More detailed information about Project 2 goes here. Include images, text, even links.
-        </div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        </div>
-      </div>
+
+  <!-- Fullscreen Welcome Hero -->
+  <main class="home-hero d-flex align-items-center justify-content-center text-center">
+
+    <!-- Hero content -->
+    <div class="home-glass p-4 p-md-5">
+      <h1 class="display-5 fw-bold text-white mb-3">Welcome to my Portfolio</h1>
+      <p class="lead text-white-50 mb-4">Steephen L. Resurreccion. of C3A.</p>
+      <a href="portfolio.html" class="btn btn-autumn btn-lg px-4">Enter Portfolio</a>
     </div>
-  </div>
+  </main>
 
-  <!-- Project 3 Modal -->
-  <div class="modal fade" id="project3Modal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5">Project 3 Details</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          More detailed information about Project 3 goes here. Screenshots, bullets, whatever you want.
-        </div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Bootstrap JS (with Popper) -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
   <script src="script.js"></script>
 </body>
 </html>
